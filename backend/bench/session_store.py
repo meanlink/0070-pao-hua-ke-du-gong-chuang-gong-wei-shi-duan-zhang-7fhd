@@ -9,6 +9,12 @@ def session(cx, code):
         raise HTTPException(404,"使用单不存在")
     return row
 
+def session_for_update(cx, code):
+    row=cx.execute("SELECT * FROM bench_sessions WHERE code=%s FOR UPDATE",(code,)).fetchone()
+    if row is None:
+        raise HTTPException(404,"使用单不存在")
+    return row
+
 def insert(cx, body):
     return cx.execute("""
         INSERT INTO bench_sessions(code,machine,crew,service_day,open_minute,end_minute)

@@ -17,3 +17,12 @@ def record(cx, day, email, report, job):
         INSERT INTO utilization_bulletins(service_day,issued_by,report,job_id)
         VALUES (%s,%s,%s,%s) RETURNING *
     """,(day,email,Jsonb(report),job)).fetchone()
+
+def replace(cx, day, email, report, job):
+    return cx.execute("""
+        INSERT INTO utilization_bulletins(service_day,issued_by,report,job_id)
+        VALUES (%s,%s,%s,%s)
+        ON CONFLICT (service_day) DO UPDATE
+        SET issued_by=EXCLUDED.issued_by, report=EXCLUDED.report, job_id=EXCLUDED.job_id
+        RETURNING *
+    """,(day,email,Jsonb(report),job)).fetchone()

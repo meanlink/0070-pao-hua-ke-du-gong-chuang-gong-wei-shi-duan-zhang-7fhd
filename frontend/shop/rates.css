@@ -7,3 +7,9 @@
 .rate-key span:first-child::before,.rate-span .worked:first-child .window{background:oklch(69% .078 85);}
 .large-rate{font-size:clamp(1.15rem,3vw,2rem);color:var(--s-accent);}
 @media(max-width:540px){.rate-line{grid-template-columns:1fr 1fr 1fr;}.rate-span{grid-column:2/-1;}}
+.corrections{list-style:none;margin:0;padding:0;display:grid;gap:.7rem;}
+.corrections li{border:1px solid var(--s-line);background:var(--s-panel);padding:.8rem;}
+.corrections li>p{margin:0 0 .5rem;}
+.correction-day{display:grid;gap:.15rem;font-size:.9rem;padding:.35rem .55rem;}
+.correction-day.is-current{background:oklch(92% .05 82);}
+.correction-day strong{font-size:.86rem;}

@@ -24,3 +24,14 @@ CREATE TABLE IF NOT EXISTS utilization_bulletins (
     service_day date PRIMARY KEY, issued_by text NOT NULL REFERENCES app_users(email),
     report jsonb NOT NULL, job_id bigint REFERENCES app_jobs(id)
 );
+CREATE TABLE IF NOT EXISTS bench_session_moves (
+    id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    request_key text NOT NULL UNIQUE,
+    session_code text NOT NULL REFERENCES bench_sessions(code),
+    from_day date NOT NULL, to_day date NOT NULL CHECK (to_day <> from_day),
+    moved_by text NOT NULL REFERENCES app_users(email),
+    receipt jsonb NOT NULL,
+    created_at timestamptz NOT NULL DEFAULT now()
+);
+CREATE INDEX IF NOT EXISTS bench_session_moves_days
+    ON bench_session_moves (from_day, to_day);
