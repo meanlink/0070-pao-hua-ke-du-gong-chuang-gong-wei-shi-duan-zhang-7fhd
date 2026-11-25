@@ -1,0 +1,4 @@
+.worked{height:13px;position:relative;margin:.65rem 0;}
+.worked .axis{position:absolute;inset:2px 0;background:repeating-linear-gradient(to right,var(--s-line) 0 1px,transparent 1px 6.25%);border-block:1px solid var(--s-line);}
+.worked .window{position:absolute;top:0;bottom:0;background:var(--s-accent);border-inline:1px solid var(--s-panel);opacity:.95;transition:opacity .25s cubic-bezier(.12,.7,.2,1);}
+.worked .window:hover{opacity:.65;}
